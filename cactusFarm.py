@@ -1,32 +1,25 @@
 yo = get_world_size()
-
-
-def tillSoil():
-    till()
+yo2 = yo * yo
 
 
 def checkSoil():
-    if get_ground_type() == Grounds.Grassland:
-        tillSoil()
-
-
-def sdasdadasdsada():
-    planted = 0
     while True:
-        for _ in range(yo):
-            checkSoil()
-            plant(Entities.Cactus)
-            planted += 1
-            move(East)
-        move(North)
-        if planted == 256:
+        if get_ground_type() == Grounds.Soil:
             break
+        if get_ground_type() == Grounds.Grassland:
+            tilled = 0
+            while tilled != yo2:
+                for i in range(yo):
+                    till()
+                    tilled += 1
+                    move(East)
+                move(North)
 
 
 def plantFlow():
     planted = 0
-    while planted != 256:
-        for _ in range(yo):
+    while planted != yo2:
+        for i in range(yo):
             plant(Entities.Cactus)
             planted += 1
             move(North)
@@ -36,13 +29,11 @@ def plantFlow():
 
 def mainFlow():
     while True:
-
         edge = get_world_size() - 1
-        columns_sorted = 0
-        rows_sorted = 0
+        columns_sorted = yo
+        rows_sorted = yo
         while True:
-
-            if columns_sorted == 15:
+            if columns_sorted == yo:
                 break
             sorted = True
             while sorted:
@@ -62,8 +53,7 @@ def mainFlow():
             print(columns_sorted)
 
         while True:
-
-            if rows_sorted == 15:
+            if rows_sorted == yo:
                 break
             sorted = True
             while sorted:
@@ -81,18 +71,18 @@ def mainFlow():
             rows_sorted += 1
             print(rows_sorted)
 
-        if columns_sorted == 15 and rows_sorted == 15:
-            harvest()
-            columns_sorted = 0
-            rows_sorted = 0
+    if columns_sorted == yo and rows_sorted == yo:
+        harvest()
+        columns_sorted = 0
+        rows_sorted = 0
+        break
 
 
 def main():
     while True:
+        checkSoil()
         plantFlow()
         mainFlow()
 
 
 main()
-
-# di pa tapos aslkjaslkdjklajdasdjalkjd
