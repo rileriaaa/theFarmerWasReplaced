@@ -71,11 +71,11 @@ def mainFlow():
             rows_sorted += 1
             print(rows_sorted)
 
-    if columns_sorted == yo and rows_sorted == yo:
-        harvest()
-        columns_sorted = 0
-        rows_sorted = 0
-        break
+        if columns_sorted == yo and rows_sorted == yo:
+            harvest()
+            columns_sorted = 0
+            rows_sorted = 0
+            break
 
 
 def main():
